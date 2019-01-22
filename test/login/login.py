@@ -1,6 +1,94 @@
+from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+import unittest
 
 
 
-def test_login(app):
-    app.session.login("administrator", "root")
-    assert app.session.is_logged_in_as("administrator")
+class TestScreenKeyboard(unittest.TestCase):
+    def setUp(self):
+        self.wd = WebDriver()
+        self.wd.implicitly_wait(30)
+
+
+    def test_screen_keyboard(self):
+        wd = self.wd
+        wd.get("http://localhost:9999")
+        wd.find_element_by_name("username").click()
+        wd.find_element_by_name("username").clear()
+        wd.find_element_by_name("username").send_keys("")
+        wd.find_element_by_xpath("//body").click()
+        wd.find_element_by_name("password").click()
+        wd.find_element_by_name("password").clear()
+        wd.find_element_by_name("password").send_keys("")
+        wd.find_element_by_xpath("//body").click()
+        wd.find_element_by_css_selector("span.icon.icon-keyboard.modal-link-local").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[3]").click()
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
+        # ERROR: Caught exception [ERROR: Unsupported command [doubleClick | xpath=(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1] | ]]
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[4]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[6]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[2]").click()
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::button[1]").click()
+        wd.find_element_by_css_selector(
+            "span.icon.icon-keyboard.modal-link-local.modal-link-local_password").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[4]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[5]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[8]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[6]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[7]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[4]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[9]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Введите число'])[1]/following::div[2]").click()
+        wd.find_element_by_xpath(
+            "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::button[1]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Представьтесь, кто вы?'])[1]/following::input[4]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='«Моментальные»'])[1]/following::span[2]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Очистить временные данные?'])[1]/following::button[1]").click()
+
+
+    def is_element_present(self, how, what):
+        try:
+            self.wd.find_element(by=how, value=what)
+        except NoSuchElementException as e:
+            return False
+        return True
+
+
+    def is_alert_present(self):
+        try:
+            self.wd.switch_to_alert()
+        except NoAlertPresentException as e:
+            return False
+        return True
+
+
+    def tearDown(self):
+        self.wd.quit()
+
+
+if __name__ == "__main__":
+    unittest.main()
