@@ -5,13 +5,13 @@ import unittest
 
 
 
-class UntitledTestCase(unittest.TestCase):
+class TestReportToday(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver()
         self.wd.implicitly_wait(30)
 
 
-    def test_untitled_test_case(self):
+    def test_report_today(self):
         wd = self.wd
         wd.get("http://localhost:9999")
         wd.find_element_by_name("username").send_keys("20003510")
@@ -35,6 +35,7 @@ class UntitledTestCase(unittest.TestCase):
         except NoSuchElementException as e:
             return False
         return True
+
 
     def is_alert_present(self):
         try:
