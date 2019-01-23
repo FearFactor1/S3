@@ -1,5 +1,4 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
@@ -13,7 +12,20 @@ class TestScreenKeyboard(unittest.TestCase):
 
     def test_screen_keyboard(self):
         wd = self.wd
-        wd.get("http://localhost:9999")
+        self.open_home_page(wd)
+        self.login_keyboard(wd)
+        self.exit_s3(wd)
+
+
+    def exit_s3(self, wd):
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='«Моментальные»'])[1]/following::span[2]").click()
+        wd.find_element_by_xpath(
+            u"(.//*[normalize-space(text()) and normalize-space(.)='Очистить временные данные?'])[1]/following::button[1]").click()
+
+
+    def login_keyboard(self, wd):
+        # press login and password on keyboard
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("username").clear()
         wd.find_element_by_name("username").send_keys("")
@@ -29,7 +41,6 @@ class TestScreenKeyboard(unittest.TestCase):
             "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
         wd.find_element_by_xpath(
             "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
-        # ERROR: Caught exception [ERROR: Unsupported command [doubleClick | xpath=(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1] | ]]
         wd.find_element_by_xpath(
             "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::div[1]").click()
         wd.find_element_by_xpath(
@@ -64,18 +75,10 @@ class TestScreenKeyboard(unittest.TestCase):
             "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::button[1]").click()
         wd.find_element_by_xpath(
             u"(.//*[normalize-space(text()) and normalize-space(.)='Представьтесь, кто вы?'])[1]/following::input[4]").click()
-        wd.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='«Моментальные»'])[1]/following::span[2]").click()
-        wd.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='Очистить временные данные?'])[1]/following::button[1]").click()
 
 
-    def is_element_present(self, how, what):
-        try:
-            self.wd.find_element(by=how, value=what)
-        except NoSuchElementException as e:
-            return False
-        return True
+    def open_home_page(self, wd):
+        wd.get("http://localhost:9999")
 
 
     def is_alert_present(self):
