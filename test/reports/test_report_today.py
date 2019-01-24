@@ -1,5 +1,4 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
 
@@ -13,7 +12,7 @@ class TestReportToday(unittest.TestCase):
     def test_report_today(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd)
+        self.login(wd, username="20003510", password="34756381")
         self.report_today(wd)
         self.exit_s3(wd)
 
@@ -38,23 +37,15 @@ class TestReportToday(unittest.TestCase):
         wd.find_element_by_css_selector("div.modal__body-close").click()
 
 
-    def login(self, wd):
-        wd.find_element_by_name("username").send_keys("20003510")
+    def login(self, wd, username, password):
+        wd.find_element_by_name("username").send_keys(username)
         wd.find_element_by_name("password").clear()
-        wd.find_element_by_name("password").send_keys("34756381")
+        wd.find_element_by_name("password").send_keys(password)
         wd.find_element_by_xpath(u"//input[@value='Войти']").click()
 
 
     def open_home_page(self, wd):
         wd.get("http://localhost:9999")
-
-
-    def is_alert_present(self):
-        try:
-            self.wd.switch_to_alert()
-        except NoAlertPresentException as e:
-            return False
-        return True
 
 
     def tearDown(self):

@@ -1,5 +1,4 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.common.exceptions import NoAlertPresentException
 import unittest
 
 
@@ -79,14 +78,6 @@ class TestScreenKeyboard(unittest.TestCase):
 
     def open_home_page(self, wd):
         wd.get("http://localhost:9999")
-
-
-    def is_alert_present(self):
-        try:
-            self.wd.switch_to_alert()
-        except NoAlertPresentException as e:
-            return False
-        return True
 
 
     def tearDown(self):
