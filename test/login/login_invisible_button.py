@@ -11,18 +11,20 @@ class TestInvisibleButton(unittest.TestCase):
 
 
     def test_invisible_button(self):
+        self.login_invisible_button() # проверка, что кнопка Войти не доступна
+
+
+    def login_invisible_button(self):
         wd = self.wd
-        self.login_invisible_button(wd) # проверка, что кнопка Войти не доступна
-
-
-    def login_invisible_button(self, wd):
         # клик на поле логин и пароль, проверка, что поле Войти не доступна
-        self.open_home_page(wd)
+        self.open_home_page()
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("password").click()
         wd.find_element_by_xpath("(//input[@disabled='disabled'])")
 
-    def open_home_page(self, wd):
+
+    def open_home_page(self):
+        wd = self.wd
         wd.get("http://localhost:9999")
 
 

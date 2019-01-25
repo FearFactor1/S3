@@ -11,21 +11,22 @@ class TestScreenKeyboard(unittest.TestCase):
 
 
     def test_screen_keyboard(self):
+        self.login_keyboard() # ввод логина через экранную клавиатуру
+        self.exit_s3()
+
+
+    def exit_s3(self):
         wd = self.wd
-        self.login_keyboard(wd) # ввод логина через экранную клавиатуру
-        self.exit_s3(wd)
-
-
-    def exit_s3(self, wd):
         wd.find_element_by_xpath(
             u"(.//*[normalize-space(text()) and normalize-space(.)='«Моментальные»'])[1]/following::span[2]").click()
         wd.find_element_by_xpath(
             u"(.//*[normalize-space(text()) and normalize-space(.)='Очистить временные данные?'])[1]/following::button[1]").click()
 
 
-    def login_keyboard(self, wd):
+    def login_keyboard(self):
+        wd = self.wd
         # press login and password on keyboard
-        self.open_home_page(wd)
+        self.open_home_page()
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("username").clear()
         wd.find_element_by_name("username").send_keys("")
@@ -77,7 +78,8 @@ class TestScreenKeyboard(unittest.TestCase):
             u"(.//*[normalize-space(text()) and normalize-space(.)='Представьтесь, кто вы?'])[1]/following::input[4]").click()
 
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.wd
         wd.get("http://localhost:9999")
 
 
