@@ -1,3 +1,4 @@
+# Тест: Ввод логина через экранную клавиатуру
 from selenium.webdriver.firefox.webdriver import WebDriver
 import unittest
 
@@ -11,7 +12,7 @@ class TestScreenKeyboard(unittest.TestCase):
 
     def test_screen_keyboard(self):
         wd = self.wd
-        self.login_keyboard(wd)
+        self.login_keyboard(wd) # ввод логина через экранную клавиатуру
         self.exit_s3(wd)
 
 
