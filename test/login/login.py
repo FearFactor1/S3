@@ -11,7 +11,6 @@ class TestScreenKeyboard(unittest.TestCase):
 
     def test_screen_keyboard(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login_keyboard(wd)
         self.exit_s3(wd)
 
@@ -25,6 +24,7 @@ class TestScreenKeyboard(unittest.TestCase):
 
     def login_keyboard(self, wd):
         # press login and password on keyboard
+        self.open_home_page(wd)
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("username").clear()
         wd.find_element_by_name("username").send_keys("")

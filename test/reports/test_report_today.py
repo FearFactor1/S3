@@ -11,7 +11,6 @@ class TestReportToday(unittest.TestCase):
 
     def test_report_today(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="20003510", password="34756381")
         self.report_today(wd)
         self.exit_s3(wd)
@@ -26,6 +25,7 @@ class TestReportToday(unittest.TestCase):
 
 
     def report_today(self, wd):
+        self.open_home_page(wd)
         # click to report
         wd.find_element_by_link_text(u"Отчёты").click()
         # click to button report
@@ -38,6 +38,7 @@ class TestReportToday(unittest.TestCase):
 
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("username").send_keys(username)
         wd.find_element_by_name("password").clear()
         wd.find_element_by_name("password").send_keys(password)
