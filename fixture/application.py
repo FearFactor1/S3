@@ -32,6 +32,15 @@ class Application:
         wd.find_element_by_css_selector("div.modal__body-close").click()
 
 
+    def login_invisible_button(self):
+        wd = self.wd
+        # клик на поле логин и пароль, проверка, что поле Войти не доступна
+        self.open_home_page()
+        wd.find_element_by_name("username").click()
+        wd.find_element_by_name("password").click()
+        wd.find_element_by_xpath("(//input[@disabled='disabled'])")
+
+
     def login(self, username, password):
         wd = self.wd
         self.open_home_page()
