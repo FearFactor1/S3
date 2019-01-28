@@ -10,6 +10,6 @@ def app(request):
 
 
 def test_report_today(app):
-    app.login(username="20003510", password="34756381")
+    app.session.login(username="20003510", password="34756381")
     app.report_today()
-    app.exit_s3()
+    app.session.exit_s3()
