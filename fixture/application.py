@@ -1,5 +1,6 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 from fixture.session import SessionHelper
+from fixture.login import LoginHelper
 
 
 
@@ -9,6 +10,7 @@ class Application:
         self.wd = WebDriver()
         self.wd.implicitly_wait(7)
         self.session = SessionHelper(self)
+        self.login = LoginHelper(self)
 
 
     def report_today(self):
@@ -23,15 +25,6 @@ class Application:
         wd.find_element_by_link_text(u"Назад").click()
         # click close modal window
         wd.find_element_by_css_selector("div.modal__body-close").click()
-
-
-    def login_invisible_button(self):
-        wd = self.wd
-        # клик на поле логин и пароль, проверка, что поле Войти не доступна
-        self.open_home_page()
-        wd.find_element_by_name("username").click()
-        wd.find_element_by_name("password").click()
-        wd.find_element_by_xpath("(//input[@disabled='disabled'])")
 
 
     def open_home_page(self):
