@@ -16,14 +16,6 @@ class LoginHelper:
         wd.find_element_by_xpath("(//input[@disabled='disabled'])")
 
 
-    def exit_s3(self):
-        wd = self.app.wd
-        wd.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='«Моментальные»'])[1]/following::span[2]").click()
-        wd.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='Очистить временные данные?'])[1]/following::button[1]").click()
-
-
     def login_keyboard(self):
         wd = self.app.wd
         # press login and password on keyboard
