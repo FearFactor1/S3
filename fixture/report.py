@@ -8,7 +8,7 @@ class ReportHelper:
         self.app = app
 
 
-    def report_today(self):
+    def calendar_today(self):
         wd = self.app.wd
         self.app.open_home_page()
         # click to report

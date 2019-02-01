@@ -7,7 +7,7 @@ class LoginHelper:
         self.app = app
 
 
-    def login_invisible_button(self):
+    def invisible_button(self):
         wd = self.app.wd
         # клик на поле логин и пароль, проверка, что поле Войти не доступна
         self.app.open_home_page()
@@ -18,7 +18,7 @@ class LoginHelper:
         wd.find_element_by_xpath("(//input[@type='submit'])").is_displayed()
 
 
-    def login_keyboard(self):
+    def press_keyboard(self):
         wd = self.app.wd
         # press login and password on keyboard
         self.app.open_home_page()
