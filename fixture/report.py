@@ -20,3 +20,4 @@ class ReportHelper:
         wd.find_element_by_link_text(u"Назад").click()
         # click close modal window
         wd.find_element_by_css_selector("div.modal__body-close").click()
+        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\report\\report_today.png')

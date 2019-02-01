@@ -14,6 +14,8 @@ class LoginHelper:
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("password").click()
         wd.find_element_by_xpath("(//input[@disabled='disabled'])")
+        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\login_invisible_button.png')
+        wd.find_element_by_xpath("(//input[@type='submit'])").is_displayed()
 
 
     def login_keyboard(self):
@@ -69,3 +71,4 @@ class LoginHelper:
             "(.//*[normalize-space(text()) and normalize-space(.)='C'])[1]/following::button[1]").click()
         wd.find_element_by_xpath(
             u"(.//*[normalize-space(text()) and normalize-space(.)='Представьтесь, кто вы?'])[1]/following::input[4]").click()
+        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\login_keyboard.png')
