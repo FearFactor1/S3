@@ -20,9 +20,7 @@ class SessionHelper:
     def exit_s3(self):
         wd = self.app.wd
         # click to exit s3
-        wd.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='«Моментальные»'])[1]/following::span[2]").click()
-        wd.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='Очистить временные данные?'])[1]/following::button[1]").click()
+        wd.find_element_by_class_name("icon.icon-exit").click()
+        wd.find_element_by_class_name("cashboxLogout.btn.btn_transperent").click()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\session\\exit_s3.png')
 
