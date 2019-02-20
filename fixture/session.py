@@ -24,3 +24,5 @@ class SessionHelper:
         wd.find_element_by_class_name("cashboxLogout.btn.btn_transperent").click()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\session\\exit_s3.png')
 
+
+
