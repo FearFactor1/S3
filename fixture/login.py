@@ -6,6 +6,7 @@ class LoginHelper:
     def __init__(self, app):
         self.app = app
 
+# ----- основные методы фикстуры login
 
     def invisible_button(self):
         wd = self.app.wd
@@ -41,6 +42,7 @@ class LoginHelper:
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(1)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(11)").click()
         wd.find_element_by_class_name("btn.btn_transperent.modal__prompt").click()
+        # Прокликивание пароля через экранную клавиатуру
         wd.find_element_by_css_selector("span.icon.icon-keyboard.modal-link-local.modal-link-local_password").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(3)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(4)").click()
@@ -53,11 +55,6 @@ class LoginHelper:
         wd.find_element_by_class_name("btn.btn_transperent.modal__prompt").click()
         self.enter_button()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\login_keyboard.png')
-
-
-    def enter_button(self):
-        wd = self.app.wd
-        wd.find_element_by_css_selector("div > input[value='Войти']").click()
 
 
     def incorrect_user(self):
@@ -74,3 +71,32 @@ class LoginHelper:
         wd.find_element_by_css_selector("div.signIn__error.signIn__error_show.error")
         wd.find_element_by_xpath(".//*[text()='0051 Неверный идентификатор пользователя терминала']/..")
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\incorrect_user.png')
+
+
+    def correct_user(self):
+        # обычный ввод логина и пароля
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_name("username").click()
+        wd.find_element_by_name("username").clear()
+        wd.find_element_by_name("username").send_keys("20003510")
+        wd.find_element_by_name("password").click()
+        wd.find_element_by_name("password").clear()
+        wd.find_element_by_name("password").send_keys("34756381")
+        self.enter_button()
+        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\correct_user.png')
+
+
+# ----- вспомогательные методы для основных методов фикстуры login
+
+    def user_in_main_page(self):
+        # проверка, что на главной странице s3, отображается пользователь и терминал
+        wd = self.app.wd
+        wd.find_element_by_xpath("//*/div[contains(text(), '20003510')]")
+        wd.find_element_by_xpath("//*/div[contains(text(), '2000006809')]")
+
+
+    def enter_button(self):
+        # нажатие на кнопку войти
+        wd = self.app.wd
+        wd.find_element_by_css_selector("div > input[value='Войти']").click()
