@@ -1,6 +1,7 @@
 
 
 
+
 class LoginHelper:
 
     def __init__(self, app):
@@ -92,6 +93,8 @@ class LoginHelper:
     def user_in_main_page(self):
         # проверка, что на главной странице s3, отображается пользователь и терминал
         wd = self.app.wd
+        user = wd.find_element_by_css_selector("div.header__user-data-text-head_user").text
+        assert "Пользователь:" in user
         wd.find_element_by_xpath("//*/div[contains(text(), '20003510')]")
         wd.find_element_by_xpath("//*/div[contains(text(), '2000006809')]")
 

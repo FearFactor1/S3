@@ -7,6 +7,7 @@ class ReportHelper:
     def __init__(self, app):
         self.app = app
 
+# ----- основные методы фикстуры reports
 
     def calendar_today(self):
         wd = self.app.wd
@@ -19,6 +20,9 @@ class ReportHelper:
         # click close modal window
         wd.find_element_by_css_selector("div.modal__body-close").click()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\report\\report_today.png')
+
+
+# ----- вспомогательные методы для основных методов фикстуры reports
 
 
     def open_report_page(self):

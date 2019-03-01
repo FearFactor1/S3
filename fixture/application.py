@@ -15,7 +15,12 @@ class Application:
         self.report = ReportHelper(self)
 
 
-
+    def is_valid(self):
+        try:
+            self.wd.current_url
+            return True
+        except:
+            return False
 
 
     def open_home_page(self):
