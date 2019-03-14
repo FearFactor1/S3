@@ -3,8 +3,8 @@
 
 
 
-def test_invisible_button(app):
-    app.login.invisible_button() # проверка, что кнопка Войти не доступна
+def test_invisible_button(app2):
+    app2.login.invisible_button() # проверка, что кнопка Войти не доступна
 
 
 

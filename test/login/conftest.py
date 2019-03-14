@@ -3,7 +3,7 @@ from fixture.application import Application
 
 
 @pytest.fixture(scope="session")
-def app(request):
+def app2(request):
     fixture = Application()
     request.addfinalizer(fixture.destroy)
     return fixture

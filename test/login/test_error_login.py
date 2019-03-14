@@ -3,5 +3,5 @@
 
 
 
-def test_error_login(app):
-    app.login.incorrect_user()
+def test_error_login(app2):
+    app2.login.incorrect_user()

@@ -25,4 +25,34 @@ class SessionHelper:
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\session\\exit_s3.png')
 
 
+    def ensure_exit_s3(self):
+        wd = self.app.wd
+        if self.is_logged_in():
+            self.exit_s3()
+
+
+    def is_logged_in(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_class_name("icon.icon-exit")) > 0
+
+
+    def is_logged_in_as(self, username):
+        wd = self.app.wd
+        return wd.find_element_by_css_selector("div.header__user-data-text-head_user").text == "("+username+")"
+
+
+    def ensure_login(self, username, password):
+        wd = self.app.wd
+        if self.is_logged_in():
+            if self.is_logged_in_as(username):
+                return
+            else:
+                self.exit_s3()
+        self.login(username, password)
+
+
+
+
+
+
 
