@@ -81,7 +81,6 @@ class LoginHelper:
         wd.find_element_by_name("password").click()
         wd.find_element_by_name("password").clear()
         wd.find_element_by_name("password").send_keys("34756381")
-        self.enter_button()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\correct_user.png')
 
 
