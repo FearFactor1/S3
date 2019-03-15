@@ -68,9 +68,6 @@ class LoginHelper:
         wd.find_element_by_name("password").click()
         wd.find_element_by_name("password").clear()
         wd.find_element_by_name("password").send_keys("34756381")
-        self.enter_button()
-        wd.find_element_by_css_selector("div.signIn__error.signIn__error_show.error")
-        wd.find_element_by_xpath(".//*[text()='0051 Неверный идентификатор пользователя терминала']/..")
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\incorrect_user.png')
 
 
@@ -103,3 +100,9 @@ class LoginHelper:
         # нажатие на кнопку войти
         wd = self.app.wd
         wd.find_element_by_css_selector("div > input[value='Войти']").click()
+
+
+    def err_passwword(self):
+        wd = self.app.wd
+        return wd.find_element_by_css_selector("div.signIn__error.signIn__error_show.error").text
+        #wd.find_element_by_xpath(".//*[text()='0051 Неверный идентификатор пользователя терминала']/..")
