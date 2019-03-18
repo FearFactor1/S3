@@ -84,8 +84,6 @@ class LoginHelper:
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\correct_user.png')
 
 
-# ----- вспомогательные методы для основных методов фикстуры login
-
     def user_in_main_page(self):
         # проверка, что на главной странице s3, отображается пользователь и терминал
         wd = self.app.wd

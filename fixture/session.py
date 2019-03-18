@@ -51,6 +51,11 @@ class SessionHelper:
         self.login(username, password)
 
 
+    def assertion_current_page(self):
+        wd = self.app.wd
+        return wd.current_url
+
+
 
 
 
