@@ -14,10 +14,12 @@ class ReportHelper:
         #test = wd.find_element_by_css_selector("center > strong").text
         #test = test.replace('\n', ' ')
         #assert test == "ОТЧЕТ ЗА ДЕНЬ ИТОГИ ПО ТЕРМИНАЛУ"
-        test = wd.find_element_by_css_selector("center").text
-        spl = test.split('\n')
+        if len(wd.find_element_by_css_selector("center").text) > 0:
+            test = wd.find_element_by_css_selector("center").text
+            spl = test.split('\n')
+        else:
+            print("Пустой тег в отчёте")
         print(' | '.join(spl))
-        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\report\\report_today.png')
         return spl
 
 
