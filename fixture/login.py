@@ -54,7 +54,6 @@ class LoginHelper:
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(8)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(1)").click()
         wd.find_element_by_class_name("btn.btn_transperent.modal__prompt").click()
-        self.enter_button()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\login_keyboard.png')
 
 

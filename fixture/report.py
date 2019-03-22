@@ -9,22 +9,31 @@ class ReportHelper:
 
 # ----- основные методы фикстуры reports
 
-    def calendar_today(self):
+    def parser_report_text(self):
         wd = self.app.wd
-        self.app.open_home_page()
-        self.open_report_page()
-        # click to button report
-        wd.find_element_by_class_name("btn.btn_save").click()
+        #test = wd.find_element_by_css_selector("center > strong").text
+        #test = test.replace('\n', ' ')
+        #assert test == "ОТЧЕТ ЗА ДЕНЬ ИТОГИ ПО ТЕРМИНАЛУ"
+        test = wd.find_element_by_css_selector("center").text
+        spl = test.split('\n')
+        print(' | '.join(spl))
+        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\report\\report_today.png')
+        return spl
+
+
+    def comeback_main_page(self):
+        wd = self.app.wd
         # click comeback
         wd.find_element_by_link_text(u"Назад").click()
         # click close modal window
         wd.find_element_by_css_selector("div.modal__body-close").click()
-        wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\report\\report_today.png')
 
 
-# ----- вспомогательные методы для основных методов фикстуры reports
+    def button_get_report(self):
+        wd = self.app.wd
+        wd.find_element_by_class_name("btn.btn_save").click()
 
 
-    def open_report_page(self):
+    def open_page_report(self):
         wd = self.app.wd
         wd.find_element_by_link_text(u"Отчёты").click()
