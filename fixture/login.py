@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 
 
@@ -90,6 +90,9 @@ class LoginHelper:
         assert "Пользователь:" in user
         wd.find_element_by_xpath("//*/div[contains(text(), '20003510')]")
         wd.find_element_by_xpath("//*/div[contains(text(), '2000006809')]")
+        dat_s3 = wd.find_element_by_css_selector("div.header__date-day").text
+        dat_tmz = datetime.today().strftime('%Y.%m.%d')
+        assert dat_s3 == dat_tmz
 
 
     def enter_button(self):
