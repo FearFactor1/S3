@@ -1,4 +1,4 @@
-
+from datetime import datetime, date, time
 
 
 
@@ -16,10 +16,13 @@ class ReportHelper:
         #assert test == "ОТЧЕТ ЗА ДЕНЬ ИТОГИ ПО ТЕРМИНАЛУ"
         if len(wd.find_element_by_css_selector("center").text) > 0:
             test = wd.find_element_by_css_selector("center").text
+            c = datetime.today().strftime('%d/%m/%Y 00:00:00')
             spl = test.split('\n')
         else:
             print("Пустой тег в отчёте")
+        assert " C  " + ":  " + c in spl
         print(' | '.join(spl))
+        print(c)
         return spl
 
 
