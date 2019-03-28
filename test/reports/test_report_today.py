@@ -1,3 +1,4 @@
+# Отчёт за день + Кассовый отчёт + Обычные + Терминал + Текущая дата
 
 
 
@@ -9,4 +10,5 @@ def test_report_today(app):
     assert "ИТОГИ ПО ТЕРМИНАЛУ" in app.report.parser_report_text()
     assert "Продавец: 2000006809-0020003510" in app.report.parser_report_text()
     assert "  Терминал :2000006809" in app.report.parser_report_text()
+    assert app.report.current_day_C() in app.report.parser_report_text()
     app.report.comeback_main_page()

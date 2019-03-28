@@ -1,4 +1,4 @@
-from datetime import datetime, date, time
+from datetime import datetime
 
 
 
@@ -16,13 +16,10 @@ class ReportHelper:
         #assert test == "ОТЧЕТ ЗА ДЕНЬ ИТОГИ ПО ТЕРМИНАЛУ"
         if len(wd.find_element_by_css_selector("center").text) > 0:
             test = wd.find_element_by_css_selector("center").text
-            c = datetime.today().strftime('%d/%m/%Y 00:00:00')
             spl = test.split('\n')
         else:
             print("Пустой тег в отчёте")
-        assert " C  " + ":  " + c in spl
         print(' | '.join(spl))
-        print(c)
         return spl
 
 
@@ -42,3 +39,10 @@ class ReportHelper:
     def open_page_report(self):
         wd = self.app.wd
         wd.find_element_by_link_text(u"Отчёты").click()
+
+
+    def current_day_C(self):
+        d = datetime.today().strftime('%d/%m/%Y 00:00:00')
+        c = " C  " + ":  " + d
+        print(c)
+        return c
