@@ -46,3 +46,9 @@ class ReportHelper:
         c = " C  " + ":  " + d
         print(c)
         return c
+
+
+    def without_checkbox_cash_report(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("label[for='reportType1']").click()
+
