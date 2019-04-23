@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 
 
@@ -21,6 +22,40 @@ class ReportHelper:
             print("Пустой тег в отчёте")
         print(' | '.join(spl))
         return spl
+
+
+    def parser_full_report_text(self):
+        wd = self.app.wd
+        if len(wd.find_element_by_css_selector("pre").text) > 0:
+            textfull = wd.find_element_by_css_selector("pre").text
+        assert textfull.count('Кено Спортлото') == 3
+        assert textfull.count('ГОСЛОТО 4 из 20') == 3
+        assert textfull.count('ГОСЛОТО 6 из 45') == 3
+        assert textfull.count('ГОСЛОТО 7 из 49') == 3
+        assert textfull.count('5х36 до тиража 7268') == 3
+        assert textfull.count('Рапидо') == 6
+        assert textfull.count('Рапидо2') == 3
+        assert textfull.count('Спортлото 6 из 49') == 3
+        assert textfull.count('Гослото 5 из 36') == 3
+        assert textfull.count('Спортлото Матчбол') == 3
+        assert textfull.count('6 из 36') == 3
+        assert textfull.count('Русское Лото') == 3
+        assert textfull.count('Жилищная лотерея') == 3
+        assert textfull.count('Золотая подкова') == 3
+        assert textfull.count('Бинго 80') == 3
+        assert textfull.count('Бинго 75') == 3
+        assert textfull.count('12x24') == 3
+        assert textfull.count('Прикуп') == 3
+        assert textfull.count('Дуэль') == 3
+        assert textfull.count('Зодиак') == 3
+        assert textfull.count('Джокер') == 3
+        assert textfull.count('Моментальные') == 3
+        assert 'Продажи' in textfull
+        assert 'Отмены' in textfull
+        assert 'Выплаты' in textfull
+        assert textfull.count('ИТОГО') == 4
+        assert 'ИТОГО ПО ОТЧЕТУ' in textfull
+        print(re.findall('Рапидо', textfull))
 
 
     def comeback_main_page(self):
