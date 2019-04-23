@@ -12,16 +12,13 @@ class ReportHelper:
 
     def parser_report_text(self):
         wd = self.app.wd
-        #test = wd.find_element_by_css_selector("center > strong").text
-        #test = test.replace('\n', ' ')
-        #assert test == "ОТЧЕТ ЗА ДЕНЬ ИТОГИ ПО ТЕРМИНАЛУ"
-        if len(wd.find_element_by_css_selector("center").text) > 0:
-            test = wd.find_element_by_css_selector("center").text
+        if len(wd.find_element_by_css_selector("pre").text) > 0:
+            test = wd.find_element_by_css_selector("pre").text
             spl = test.split('\n')
         else:
             print("Пустой тег в отчёте")
-        print(' | '.join(spl))
-        return spl
+        #print(' | '.join(spl))
+        return test
 
 
     def parser_full_report_text(self):
@@ -55,7 +52,8 @@ class ReportHelper:
         assert 'Выплаты' in textfull
         assert textfull.count('ИТОГО') == 4
         assert 'ИТОГО ПО ОТЧЕТУ' in textfull
-        print(re.findall('Рапидо', textfull))
+        return textfull
+        #print(re.findall('Рапидо', textfull))
 
 
     def comeback_main_page(self):
@@ -79,8 +77,15 @@ class ReportHelper:
     def current_day_C(self):
         d = datetime.today().strftime('%d/%m/%Y 00:00:00')
         c = " C  " + ":  " + d
-        print(c)
+        #print(c)
         return c
+
+
+    def current_day_Po(self):
+        dp = datetime.today().strftime('%d/%m/%Y %H:%M')
+        Po = " По " + ":  " + dp
+        #print(Po)
+        return Po
 
 
     def without_checkbox_cash_report(self):
