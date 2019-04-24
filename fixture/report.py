@@ -92,3 +92,8 @@ class ReportHelper:
         wd = self.app.wd
         wd.find_element_by_css_selector("label[for='reportType1']").click()
 
+
+    def select_user(self):
+        wd = self.app.wd
+        wd.find_element_by_name("reportUserType").click()
+        wd.find_element_by_css_selector("option[value='USER']").click()
