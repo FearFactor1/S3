@@ -97,3 +97,9 @@ class ReportHelper:
         wd = self.app.wd
         wd.find_element_by_name("reportUserType").click()
         wd.find_element_by_css_selector("option[value='USER']").click()
+
+
+    def previous_month_date_10(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("a.ui-datepicker-prev.ui-corner-all").click()
+        wd.find_element_by_xpath("//a[contains(text(),'10')]").click()
