@@ -1,5 +1,4 @@
 from datetime import datetime
-import re
 
 
 
@@ -81,6 +80,13 @@ class ReportHelper:
         return c
 
 
+    def current_month_C(self):
+        dm = datetime.today().strftime('%m/%Y 00:00:00')
+        cm = " C  " + ":  " + "01/" + dm
+        #print(cm)
+        return cm
+
+
     def current_day_Po(self):
         dp = datetime.today().strftime('%d/%m/%Y %H:%M')
         Po = " По " + ":  " + dp
@@ -91,6 +97,11 @@ class ReportHelper:
     def without_checkbox_cash_report(self):
         wd = self.app.wd
         wd.find_element_by_css_selector("label[for='reportType1']").click()
+
+
+    def select_checkbox_for_month(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("label[for='reportType3']").click()
 
 
     def select_user(self):
