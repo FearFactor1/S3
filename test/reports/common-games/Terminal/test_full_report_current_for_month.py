@@ -1,8 +1,8 @@
-# Отчёт за месяц + без галочки Кассовый отчёт + Обычные + Терминал + Текущая дата
+# Отчёт за месяц + без галочки Кассовый отчёт + Обычные + Терминал + Текущий месяц
 
 
 
-def test_full_report_today_for_month(app):
+def test_full_report_current_for_month(app):
     app.report.open_page_report()
     app.report.without_checkbox_cash_report()
     app.report.select_checkbox_for_month()

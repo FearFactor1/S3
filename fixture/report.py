@@ -114,3 +114,9 @@ class ReportHelper:
         wd = self.app.wd
         wd.find_element_by_css_selector("a.ui-datepicker-prev.ui-corner-all").click()
         wd.find_element_by_xpath("//a[contains(text(),'10')]").click()
+
+
+    def previous_month_date_1(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("a.ui-datepicker-prev.ui-corner-all").click()
+        wd.find_element_by_xpath("//a[contains(text(),'1')]").click()
