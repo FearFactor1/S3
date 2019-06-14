@@ -17,4 +17,3 @@ def test_previous_month_report_for_month(app):
     assert 'Выплаты' in app.report.parser_report_text()
     assert 'ИТОГО ПО КАССЕ' in app.report.parser_report_text()
     app.report.comeback_main_page()
-    app.report.comeback_main_page()
