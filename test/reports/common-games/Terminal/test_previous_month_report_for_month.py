@@ -12,6 +12,8 @@ def test_previous_month_report_for_month(app):
     assert "ИТОГИ ПО ТЕРМИНАЛУ" in app.report.parser_report_text()
     assert "Продавец: 2000006809-0020003510" in app.report.parser_report_text()
     assert "  Терминал :2000006809" in app.report.parser_report_text()
+    assert app.report.previous_month_C_day_1() in app.report.parser_report_text()
+    assert app.report.previous_month_Po_lastday() in app.report.parser_report_text()
     assert 'Продажи' in app.report.parser_report_text()
     assert 'Отмены' in app.report.parser_report_text()
     assert 'Выплаты' in app.report.parser_report_text()

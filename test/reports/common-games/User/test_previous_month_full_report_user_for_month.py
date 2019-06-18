@@ -14,4 +14,6 @@ def test_previous_month_full_report_user_for_month(app):
     assert "ИТОГИ ПО ПОЛЬЗОВАТЕЛЮ" in app.report.parser_full_report_text()
     assert "Продавец: 2000006809-0020003510" in app.report.parser_full_report_text()
     assert " Пользователь :0020003510" in app.report.parser_full_report_text()
+    assert app.report.previous_month_C_day_1() in app.report.parser_full_report_text()
+    assert app.report.previous_month_Po_lastday() in app.report.parser_full_report_text()
     app.report.comeback_main_page()

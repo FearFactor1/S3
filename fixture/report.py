@@ -1,4 +1,6 @@
 from datetime import datetime
+import calendar
+
 
 
 
@@ -95,6 +97,14 @@ class ReportHelper:
         return last_month_c
 
 
+    def previous_month_C_day_1(self):
+        pmc = datetime.today()
+        last_month = pmc.replace(month=pmc.month - 1, day=1).strftime('%d/%m/%Y 00:00:00')
+        last_month_c = " C  " + ":  " + last_month
+        #print(last_month)
+        return last_month_c
+
+
     def current_day_Po(self):
         dp = datetime.today().strftime('%d/%m/%Y %H:%M')
         Po = " По " + ":  " + dp
@@ -108,6 +118,15 @@ class ReportHelper:
         last_month_po = " По " + ":  " + last_month
         #print(last_month_po)
         return last_month_po
+
+
+    def previous_month_Po_lastday(self):
+        date_now = datetime.today()
+        previous_month = date_now.replace(month=date_now.month - 1)
+        last_day = previous_month.replace(day=calendar.monthrange(previous_month.year, previous_month.month)[1])
+        last_day_month = last_day.strftime('%d/%m/%Y 23:59:59')
+        #print(last_day_month)
+        return last_day_month
 
 
     def without_checkbox_cash_report(self):
