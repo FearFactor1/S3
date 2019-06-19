@@ -13,17 +13,23 @@ class ReportHelper:
 
     def parser_report_text(self):
         wd = self.app.wd
+        msk = datetime.today().strftime('%d/%m/%Y %H:%M:%S') + ' МСК'
+        lok = datetime.today().strftime('%d/%m/%Y %H:%M:%S') + ' ЛОК' + ' (ЛОК)'
         if len(wd.find_element_by_css_selector("pre").text) > 0:
             test = wd.find_element_by_css_selector("pre").text
             spl = test.split('\n')
         else:
             print("Пустой тег в отчёте")
-        #print(' | '.join(spl))
+        # print(' | '.join(spl))
+        assert test.find(msk)
+        assert test.find(lok)
         return test
 
 
     def parser_full_report_text(self):
         wd = self.app.wd
+        mskf = datetime.today().strftime('%d/%m/%Y %H:%M:%S') + ' МСК'
+        lokf = datetime.today().strftime('%d/%m/%Y %H:%M:%S') + ' ЛОК' + ' (ЛОК)'
         if len(wd.find_element_by_css_selector("pre").text) > 0:
             textfull = wd.find_element_by_css_selector("pre").text
         assert textfull.count('Кено Спортлото') == 3
@@ -53,8 +59,10 @@ class ReportHelper:
         assert 'Выплаты' in textfull
         assert textfull.count('ИТОГО') == 4
         assert 'ИТОГО ПО ОТЧЕТУ' in textfull
+        assert textfull.find(mskf)
+        assert textfull.find(lokf)
         return textfull
-        #print(re.findall('Рапидо', textfull))
+        # print(re.findall('Рапидо', textfull))
 
 
     def comeback_main_page(self):
@@ -78,14 +86,14 @@ class ReportHelper:
     def current_day_C(self):
         d = datetime.today().strftime('%d/%m/%Y 00:00:00')
         c = " C  " + ":  " + d
-        #print(c)
+        # print(c)
         return c
 
 
     def current_month_C(self):
         dm = datetime.today().strftime('%m/%Y 00:00:00')
         cm = " C  " + ":  " + "01/" + dm
-        #print(cm)
+        # print(cm)
         return cm
 
 
@@ -93,7 +101,7 @@ class ReportHelper:
         pmc = datetime.today()
         last_month = pmc.replace(month=pmc.month - 1, day=10).strftime('%d/%m/%Y 00:00:00')
         last_month_c = " C  " + ":  " + last_month
-        #print(last_month)
+        # print(last_month)
         return last_month_c
 
 
@@ -101,14 +109,14 @@ class ReportHelper:
         pmc = datetime.today()
         last_month = pmc.replace(month=pmc.month - 1, day=1).strftime('%d/%m/%Y 00:00:00')
         last_month_c = " C  " + ":  " + last_month
-        #print(last_month)
+        # print(last_month)
         return last_month_c
 
 
     def current_day_Po(self):
         dp = datetime.today().strftime('%d/%m/%Y %H:%M')
         Po = " По " + ":  " + dp
-        #print(Po)
+        # print(Po)
         return Po
 
 
@@ -116,7 +124,7 @@ class ReportHelper:
         pmp = datetime.today()
         last_month = pmp.replace(month=pmp.month - 1, day=10).strftime('%d/%m/%Y 23:59:59')
         last_month_po = " По " + ":  " + last_month
-        #print(last_month_po)
+        # print(last_month_po)
         return last_month_po
 
 
@@ -125,7 +133,7 @@ class ReportHelper:
         previous_month = date_now.replace(month=date_now.month - 1)
         last_day = previous_month.replace(day=calendar.monthrange(previous_month.year, previous_month.month)[1])
         last_day_month = last_day.strftime('%d/%m/%Y 23:59:59')
-        #print(last_day_month)
+        # print(last_day_month)
         return last_day_month
 
 
