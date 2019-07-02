@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import calendar
 
 
@@ -9,7 +9,7 @@ class ReportHelper:
     def __init__(self, app):
         self.app = app
 
-# ----- основные методы фикстуры reports
+# ----- парсеры текста в отчётах:
 
     def parser_report_text(self):
         wd = self.app.wd
@@ -64,6 +64,9 @@ class ReportHelper:
         return textfull
         # print(re.findall('Рапидо', textfull))
 
+# ------------------------------------------------------------------
+
+# ------ клики по кнопкам:
 
     def comeback_main_page(self):
         wd = self.app.wd
@@ -82,6 +85,9 @@ class ReportHelper:
         wd = self.app.wd
         wd.find_element_by_link_text(u"Отчёты").click()
 
+# -------------------------------------------------------------------------
+
+# -------- методы для определения даты С:
 
     def current_day_C(self):
         d = datetime.today().strftime('%d/%m/%Y 00:00:00')
@@ -113,6 +119,17 @@ class ReportHelper:
         return last_month_c
 
 
+    def beginning_of_the_week_C(self):
+        tdb = datetime.today()
+        m = tdb - timedelta(datetime.weekday(tdb))
+        monday = m.strftime('%d/%m/%Y 00:00:00')
+        return monday
+
+
+# ------------------------------------------------------------------------
+
+# -------- методы для определения даты ПО:
+
     def current_day_Po(self):
         dp = datetime.today().strftime('%d/%m/%Y %H:%M')
         Po = " По " + ":  " + dp
@@ -136,6 +153,9 @@ class ReportHelper:
         # print(last_day_month)
         return last_day_month
 
+# -------------------------------------------------------------------------------
+
+# ------------- селекты, чекбоксы:
 
     def without_checkbox_cash_report(self):
         wd = self.app.wd
@@ -147,11 +167,19 @@ class ReportHelper:
         wd.find_element_by_css_selector("label[for='reportType3']").click()
 
 
+    def select_checkbox_since_the_beginning_of_the_week(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("label[for='reportType4']").click()
+
+
     def select_user(self):
         wd = self.app.wd
         wd.find_element_by_name("reportUserType").click()
         wd.find_element_by_css_selector("option[value='USER']").click()
 
+# -----------------------------------------------------------------------------
+
+# --------- клики за предыдущий месяц:
 
     def previous_month_date_10(self):
         wd = self.app.wd
@@ -163,3 +191,5 @@ class ReportHelper:
         wd = self.app.wd
         wd.find_element_by_css_selector("a.ui-datepicker-prev.ui-corner-all").click()
         wd.find_element_by_xpath("//a[contains(text(),'1')]").click()
+
+# ---------------------------------------------------------------------------------------
