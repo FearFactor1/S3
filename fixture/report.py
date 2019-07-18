@@ -126,6 +126,14 @@ class ReportHelper:
         return monday
 
 
+    def previous_month_C_monday_from_day_10(self):
+        pmc = datetime.today()
+        last_month = pmc.replace(month=pmc.month - 1, day=10)
+        m = last_month - timedelta(datetime.weekday(last_month))
+        mondayc = m.strftime('%d/%m/%Y 00:00:00')
+        return mondayc
+
+
 # ------------------------------------------------------------------------
 
 # -------- методы для определения даты ПО:
@@ -152,6 +160,16 @@ class ReportHelper:
         last_day_month = last_day.strftime('%d/%m/%Y 23:59:59')
         # print(last_day_month)
         return last_day_month
+
+
+    def previous_month_Po_sunday_from_monday(self):
+        pmp = datetime.today()
+        last_month = pmp.replace(month=pmp.month - 1, day=10)
+        sp = last_month - timedelta(datetime.weekday(last_month))
+        s = sp.replace(day=sp.day + 6)
+        sunday = s.strftime('%d/%m/%Y 23:59:59')
+        return sunday
+
 
 # -------------------------------------------------------------------------------
 
