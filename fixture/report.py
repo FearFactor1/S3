@@ -190,6 +190,11 @@ class ReportHelper:
         wd.find_element_by_css_selector("label[for='reportType4']").click()
 
 
+    def select_checkbox_for_the_week(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("label[for='reportType5']").click()
+
+
     def select_user(self):
         wd = self.app.wd
         wd.find_element_by_name("reportUserType").click()
