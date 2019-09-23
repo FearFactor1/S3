@@ -1,8 +1,0 @@
-language: python
-python:
-      - "3.7"
-install:
-  - python bootstrap.py #-c travis.cfg
-  - bin/buildout -N -t 3 #-c travis.cfg
-script: bin/test
-

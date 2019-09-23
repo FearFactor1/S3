@@ -42,7 +42,7 @@ class LoginHelper:
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(5)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(1)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(11)").click()
-        wd.find_element_by_class_name("btn.btn_transperent.modal__prompt").click()
+        wd.find_element_by_css_selector("button.btn.btn_transperent.modal__prompt").click()
         # Прокликивание пароля через экранную клавиатуру
         wd.find_element_by_css_selector("span.icon.icon-keyboard.modal-link-local.modal-link-local_password").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(3)").click()
@@ -53,7 +53,7 @@ class LoginHelper:
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(3)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(8)").click()
         wd.find_element_by_css_selector("div.keyboard-nums__row > div:nth-child(1)").click()
-        wd.find_element_by_class_name("btn.btn_transperent.modal__prompt").click()
+        wd.find_element_by_css_selector("button.btn.btn_transperent.modal__prompt").click()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\screen\\login\\login_keyboard.png')
 
 

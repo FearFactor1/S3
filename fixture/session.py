@@ -20,8 +20,8 @@ class SessionHelper:
     def exit_s3(self):
         wd = self.app.wd
         # click to exit s3
-        wd.find_element_by_class_name("icon.icon-exit").click()
-        wd.find_element_by_class_name("cashboxLogout.btn.btn_transperent").click()
+        wd.find_element_by_css_selector("span.icon.icon-exit").click()
+        wd.find_element_by_css_selector("button.cashboxLogout.btn.btn_transperent").click()
         wd.get_screenshot_as_file('C:\\PycharmProjects\\S3\\screen\\session\\exit_s3.png')
 
 
@@ -33,7 +33,7 @@ class SessionHelper:
 
     def is_logged_in(self):
         wd = self.app.wd
-        return len(wd.find_elements_by_class_name("icon.icon-exit")) > 0
+        return len(wd.find_elements_by_css_selector("span.icon.icon-exit")) > 0
 
 
     def is_logged_in_as(self, username):

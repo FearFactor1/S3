@@ -78,7 +78,7 @@ class ReportHelper:
 
     def button_get_report(self):
         wd = self.app.wd
-        wd.find_element_by_class_name("btn.btn_save").click()
+        wd.find_element_by_css_selector("button.btn.btn_save").click()
 
 
     def open_page_report(self):
